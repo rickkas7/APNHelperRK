@@ -25,25 +25,25 @@ void APNHelper::setCredentials() {
 	if (iccidBuf[0]) {
 		Log.info("got iccid=%s", iccidBuf);
 
-		const char *apn = NULL;
+		const APNHelperAPN *apn = NULL;
 
 		// Look up the ICCID in the table
 		for(size_t ii = 0; ii < apnsCount; ii++) {
 			if (strncmp(apns[ii].prefix, iccidBuf, strlen(apns[ii].prefix)) == 0) {
 				// Found
-				apn = apns[ii].apn;
+				apn = &apns[ii];
 				break;
 			}
 		}
 
 		if (apn) {
-			Log.info("setting apn=%s", apn);
-			cellular_credentials_set(apn, "", "", NULL);
+			Log.info("setting apn=%s username=%s password=%s", apn->apn, apn->username, apn->password);
+			cellular_credentials_set(apn->apn, apn->username, apn->password, NULL);
 		}
 	}
 
 	// If not found, don't set the credentials at all, so the default of
-	// { "89340765", "spark.telefonica.com" }
+	// { "89340765", "spark.telefonica.com", "", "" }
 	// will be used.
 }
 

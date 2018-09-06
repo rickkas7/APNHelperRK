@@ -12,7 +12,7 @@ SerialLogHandler logHandler;
 // Add APNs to this table
 const APNHelperAPN apns[1] = {
 	// Always begins with 89, then country 01, provider 260 = T-Mobile
-	{ "8901260", "fast.t-mobile.com" }
+	{ "8901260", "fast.t-mobile.com", "", "" }
 
 	// You don't need to specify the Particle SIM here. If there isn't otherwise a match, the
 	// code will just continue and use the default settings.

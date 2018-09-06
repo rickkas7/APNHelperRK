@@ -6,6 +6,8 @@
 typedef struct {
 	const char *prefix;
 	const char *apn;
+	const char *username;
+	const char *password;
 } APNHelperAPN;
 
 class APNHelper {
